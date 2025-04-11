@@ -216,14 +216,6 @@ make run q="--version"
 <br>
 
 
-## Credits
-
-<div align="center"><br>
-
-`go-client` is powered by a template generated using [`go-template`][go-template-link]
-
-[![go-template](https://img.shields.io/badge/go--template-black?style=for-the-badge&logo=go)][go-template-link]
-
 </div>
 
 [makefile-file]: ./Makefile
