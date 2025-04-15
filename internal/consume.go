@@ -32,7 +32,7 @@ func consumeLoop(ch chan any, addr string, id string) {
 	cons, _ := tcp.NewTransport(":8001", func(conn net.Conn, message []byte) {})
 	cons.Listen()
 
-	if err := cons.SendToAsync(addr, id, "0", AskQuery{Count: 4, ID: strconv.Itoa(0)}); err != nil {
+	if err := cons.SendToAsync(addr, id, "0", AskQuery{Count: 400, ID: strconv.Itoa(0)}); err != nil {
 		fmt.Printf("ConsumerLoop: failed to send read req: %v", err)
 	}
 	for {
