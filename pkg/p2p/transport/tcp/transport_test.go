@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/ripple-mq/ripple-server/pkg/p2p/encoder"
+	"github.com/ripple-mq/go-client/pkg/p2p/encoder"
 )
 
 const (

@@ -7,7 +7,7 @@ import (
 	"net"
 
 	"github.com/charmbracelet/log"
-	"github.com/ripple-mq/ripple-server/pkg/p2p/peer"
+	"github.com/ripple-mq/go-client/pkg/p2p/peer"
 )
 
 // send establishes a connection to the given address, then encodes and sends the data to the peer.

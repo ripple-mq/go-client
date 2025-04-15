@@ -8,9 +8,9 @@ import (
 
 	"github.com/charmbracelet/log"
 
-	"github.com/ripple-mq/ripple-server/pkg/p2p/encoder"
-	"github.com/ripple-mq/ripple-server/pkg/p2p/peer"
-	"github.com/ripple-mq/ripple-server/pkg/p2p/transport/comm"
+	"github.com/ripple-mq/go-client/pkg/p2p/encoder"
+	"github.com/ripple-mq/go-client/pkg/p2p/peer"
+	"github.com/ripple-mq/go-client/pkg/p2p/transport/comm"
 )
 
 type Message struct {
