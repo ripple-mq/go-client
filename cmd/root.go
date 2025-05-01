@@ -10,9 +10,10 @@ import (
 
 func Execute() {
 	client := api.NewClient[string](api.Config{
-		Topic:   "topic-X",
-		Bucket:  "topic-Y",
-		Brokers: []string{":8080"},
+		Topic:         "topic-X",
+		Bucket:        "topic-Y",
+		Brokers:       []string{":8080"},
+		ReadBatchSize: 4,
 	})
 
 	client.Create()

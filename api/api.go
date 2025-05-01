@@ -3,9 +3,10 @@ package api
 import "github.com/ripple-mq/go-client/internal"
 
 type Config struct {
-	Brokers []string
-	Bucket  string
-	Topic   string
+	Brokers       []string
+	Bucket        string
+	Topic         string
+	ReadBatchSize int
 }
 
 type Client[T any] struct {
@@ -28,6 +29,6 @@ func (t Client[T]) Writer() chan<- any {
 }
 
 func (t Client[T]) Reader() <-chan any {
-	consCh := t.broker.RegisterConsumer(t.Conf.Topic, t.Conf.Bucket)
+	consCh := t.broker.RegisterConsumer(t.Conf.Topic, t.Conf.Bucket, t.Conf.ReadBatchSize)
 	return consCh
 }
