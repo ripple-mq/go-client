@@ -10,6 +10,7 @@ import (
 	pb "github.com/ripple-mq/go-client/internal/proto"
 	"github.com/ripple-mq/go-client/pkg/p2p/encoder"
 	"github.com/ripple-mq/go-client/pkg/p2p/transport/tcp"
+	"github.com/ripple-mq/go-client/pkg/utils/config"
 	"google.golang.org/grpc"
 )
 
@@ -18,29 +19,29 @@ type Payload struct {
 	Data []byte // Actual data of the payload
 }
 
-type Broker struct {
+type Broker[T any] struct {
 	Client pb.BootstrapServerClient
 }
 
-func NewBroker(port string) *Broker {
+func NewBroker[T any](port string) *Broker[T] {
 	conn, err := grpc.NewClient(port, grpc.WithInsecure())
 	if err != nil {
 		fmt.Println("Error connecting to ripple serve, ", err)
 		return nil
 	}
 	client := pb.NewBootstrapServerClient(conn)
-	return &Broker{
+	return &Broker[T]{
 		Client: client,
 	}
 }
 
-func (t *Broker) RegisterProducer(topic string, bucket string) chan<- any {
+func (t *Broker[T]) RegisterProducer(topic string, bucket string) chan<- any {
 	resp, err := t.Client.GetProducerConnection(context.Background(), &pb.GetProducerConnectionReq{Topic: topic, Bucket: bucket})
 	if err != nil {
 		fmt.Println("ProdcuerLoop: failed to get response: ", err)
 	}
-	ch := make(chan any, 100)
-	go producerLoop(ch, ":8901", resp.ProducerId)
+	ch := make(chan any, config.Conf.Broker.Producer_buffer_size)
+	go producerLoop(ch, resp.Address, resp.ProducerId)
 	return ch
 }
 
