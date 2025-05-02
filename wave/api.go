@@ -1,4 +1,4 @@
-package api
+package wave
 
 import "github.com/ripple-mq/go-client/internal"
 

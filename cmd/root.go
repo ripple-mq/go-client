@@ -5,11 +5,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ripple-mq/go-client/api"
+	"github.com/ripple-mq/go-client/wave"
 )
 
 func Execute() {
-	client := api.NewClient[string](api.Config{
+	client := wave.NewClient[string](wave.Config{
 		Topic:         "topic-X",
 		Bucket:        "topic-Y",
 		Brokers:       []string{":8080"},
